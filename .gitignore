@@ -24,4 +24,4 @@ doc/api/
 .flutter-plugins-dependencies
 
 ui.iml
-idea/
+.idea/
