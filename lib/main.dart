@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:responsive_sharing_files/routes.dart';
 
+final showSuccessLoginProvider = StateProvider<bool>((_) => false);
+
+// inspired from https://www.youtube.com/watch?v=OjIQypbCK8I&t=690sf
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

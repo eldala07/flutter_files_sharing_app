@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:responsive_sharing_files/theme/app_colors.dart';
 
-import '../../../shared/app_images.dart';
+import '../../../../shared/app_images.dart';
 
 class LeftPanel extends StatefulWidget {
   const LeftPanel({Key? key}) : super(key: key);
@@ -68,7 +68,7 @@ class _LeftPanelState extends State<LeftPanel> with TickerProviderStateMixin {
       if (_animationController.isDismissed) {
         _animationController.forward();
       }
-      setState(() {});
+      // setState(() {});
     });
 
     _initAnimationController.addListener(() {

@@ -1,19 +1,22 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:responsive_sharing_files/theme/app_styles.dart';
 
-import '../../../theme/app_colors.dart';
-import '../../../theme/responsive_widget.dart';
+import '../../../../main.dart';
+import '../../../../theme/app_colors.dart';
+import '../../../../theme/responsive_widget.dart';
 
-class RightPanel extends StatefulWidget {
+class RightPanel extends StatefulHookConsumerWidget {
   const RightPanel({Key? key}) : super(key: key);
 
   @override
-  State<RightPanel> createState() => _RightPanelState();
+  _RightPanelState createState() => _RightPanelState();
 }
 
-class _RightPanelState extends State<RightPanel> with TickerProviderStateMixin {
+class _RightPanelState extends ConsumerState<RightPanel>
+    with TickerProviderStateMixin {
   late bool _isObscured = true;
 
   var loginNode = FocusNode();
@@ -26,11 +29,13 @@ class _RightPanelState extends State<RightPanel> with TickerProviderStateMixin {
     _isObscured = true;
   }
 
-  handleLogin() {
+  handleLogin(ref) {
     loginNode.requestFocus();
     if (kDebugMode) {
       print('Login');
     }
+    print(ref.read(showSuccessLoginProvider.notifier).state);
+    ref.read(showSuccessLoginProvider.notifier).state = true;
   }
 
   focusPassword() {
@@ -147,7 +152,7 @@ class _RightPanelState extends State<RightPanel> with TickerProviderStateMixin {
                         onKey: (event) {
                           if (FocusScope.of(context).isFirstFocus &&
                               event.isKeyPressed(LogicalKeyboardKey.enter)) {
-                            handleLogin();
+                            handleLogin(ref);
                           }
                         },
                         child: TextField(
@@ -199,8 +204,11 @@ class _RightPanelState extends State<RightPanel> with TickerProviderStateMixin {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          InkWell(
-                            onTap: () {},
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              padding: const EdgeInsets.all(5),
+                            ),
+                            onPressed: () {},
                             child: Text(
                               'Forgot password?',
                               style: robotoStyle(
@@ -217,7 +225,9 @@ class _RightPanelState extends State<RightPanel> with TickerProviderStateMixin {
                     ),
                     ElevatedButton(
                       focusNode: loginNode,
-                      onPressed: handleLogin,
+                      onPressed: () => {
+                        handleLogin(ref),
+                      },
                       child: Padding(
                         padding:
                             const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
