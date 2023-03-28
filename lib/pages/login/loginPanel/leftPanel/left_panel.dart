@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:responsive_sharing_files/theme/app_colors.dart';
+import 'package:responsive_sharing_files/theme/responsive_widget.dart';
 
 import '../../../../shared/app_images.dart';
 
@@ -86,7 +87,7 @@ class _LeftPanelState extends State<LeftPanel> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 3,
+      flex: ResponsiveWidget.isMobile(context) ? 2 : 3,
       child: Stack(
         children: [
           Container(

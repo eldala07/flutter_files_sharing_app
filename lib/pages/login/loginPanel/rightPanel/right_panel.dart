@@ -53,7 +53,7 @@ class _RightPanelState extends ConsumerState<RightPanel>
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 4,
+      flex: ResponsiveWidget.isMobile(context) ? 5 : 4,
       child: Container(
         color: AppColors.backgroundColor,
         child: SingleChildScrollView(
@@ -91,7 +91,7 @@ class _RightPanelState extends ConsumerState<RightPanel>
                     Container(
                       constraints: const BoxConstraints(maxWidth: 250),
                       child: Text(
-                        'Let\'s sign in. Enter your details below to access your data',
+                        'Enter your details below to access your data',
                         style: robotoStyle(fontSize: 14.0).copyWith(
                           color: AppColors.textLightColor,
                           height: 1.5,
@@ -204,16 +204,16 @@ class _RightPanelState extends ConsumerState<RightPanel>
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          TextButton(
-                            style: TextButton.styleFrom(
-                              padding: const EdgeInsets.all(5),
-                            ),
-                            onPressed: () {},
-                            child: Text(
-                              'Forgot password?',
-                              style: robotoStyle(
-                                fontSize: 12.0,
-                                color: AppColors.textLightColor,
+                          Container(
+                            transform: Matrix4.translationValues(10, 0, 0),
+                            child: TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                'Forgot password?',
+                                style: robotoStyle(
+                                  fontSize: 12.0,
+                                  color: AppColors.textLightColor,
+                                ),
                               ),
                             ),
                           ),

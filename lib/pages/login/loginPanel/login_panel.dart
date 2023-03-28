@@ -17,14 +17,13 @@ class LoginPanel extends StatelessWidget {
     return SizedBox(
       height: height,
       width: width,
-      child: Row(
-        children: [
-          ResponsiveWidget.isMobile(context)
-              ? const SizedBox()
-              : const LeftPanel(),
-          const RightPanel()
-        ],
-      ),
+      child: ResponsiveWidget.isMobile(context)
+          ? Column(
+              children: [const LeftPanel(), const RightPanel()],
+            )
+          : Row(
+              children: [const LeftPanel(), const RightPanel()],
+            ),
     );
   }
 }
