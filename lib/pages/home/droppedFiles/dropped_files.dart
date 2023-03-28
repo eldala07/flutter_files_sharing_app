@@ -1,7 +1,9 @@
 import 'package:cross_file/cross_file.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:responsive_sharing_files/theme/app_styles.dart';
 
+import '../../../shared/app_icons.dart';
 import '../../../shared/app_images.dart';
 import '../../../theme/app_colors.dart';
 
@@ -74,10 +76,8 @@ class _DroppedFilesState extends State<DroppedFiles> {
                   itemBuilder: (context, index) {
                     final file = allFiles[index];
                     return ListTile(
-                      leading: const Icon(
-                        Icons.insert_drive_file,
-                        color: Colors.deepOrange,
-                      ),
+                      leading: SvgPicture.asset(AppIcons.doc, height: 35),
+                      //FIXME: fix this to make it dynamic with the file extension
                       title: Text(file.name),
                       // subtitle: Text(file.path),
                     );

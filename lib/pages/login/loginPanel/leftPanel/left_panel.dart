@@ -91,8 +91,8 @@ class _LeftPanelState extends State<LeftPanel> with TickerProviderStateMixin {
       child: Stack(
         children: [
           Container(
-            decoration: const BoxDecoration(
-              gradient: RadialGradient(
+            decoration: BoxDecoration(
+              gradient: const RadialGradient(
                 center: Alignment(0, 0),
                 colors: [
                   AppColors.secondaryColor,
@@ -100,7 +100,8 @@ class _LeftPanelState extends State<LeftPanel> with TickerProviderStateMixin {
                 ],
               ),
               borderRadius: BorderRadius.only(
-                topRight: Radius.circular(10),
+                topRight: Radius.circular(
+                    ResponsiveWidget.isMobile(context) ? 0 : 10),
               ),
             ),
             child: Center(

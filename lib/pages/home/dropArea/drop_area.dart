@@ -2,6 +2,7 @@ import 'package:cross_file/cross_file.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:mime/mime.dart';
+import 'package:responsive_sharing_files/shared/app_icons.dart';
 import 'package:responsive_sharing_files/theme/app_colors.dart';
 import 'package:responsive_sharing_files/theme/app_styles.dart';
 
@@ -90,11 +91,8 @@ class _DropAreaState extends State<DropArea> {
           child: AnimatedOpacity(
             duration: const Duration(milliseconds: 200),
             opacity: dragging ? 1 : 0,
-            child: Icon(
-              Icons.file_upload,
-              size: 50,
-              color: AppColors.secondaryColor.withAlpha(120),
-            ),
+            child: IgnorePointer(
+                ignoring: true, child: Image.asset(AppIcons.picture as String)),
           ),
         ),
       ],
